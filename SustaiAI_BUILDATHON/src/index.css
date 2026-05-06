@@ -1,0 +1,137 @@
+@import 'leaflet/dist/leaflet.css';
+@import 'leaflet-draw/dist/leaflet.draw.css';
+
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+/* CODE-DNA–style mesh background (template-inspired) */
+.template-mesh {
+  background-color: #09090b;
+  background-image:
+    radial-gradient(ellipse 130% 90% at 50% -25%, rgba(59, 130, 246, 0.22), transparent 55%),
+    radial-gradient(ellipse 90% 60% at 100% 20%, rgba(139, 92, 246, 0.14), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 0% 100%, rgba(6, 182, 212, 0.12), transparent 45%),
+    radial-gradient(ellipse 50% 40% at 80% 90%, rgba(236, 72, 153, 0.06), transparent 40%);
+}
+
+.template-card {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(24, 24, 27, 0.55);
+  backdrop-filter: blur(12px);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.page-enter {
+  opacity: 0;
+}
+
+.page-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-out;
+}
+
+.leaflet-container {
+  font-family: inherit;
+}
+
+.water-progress-track {
+  height: 0.75rem;
+  border-radius: 9999px;
+  background: rgb(55 65 81);
+  overflow: hidden;
+}
+
+.water-progress-fill {
+  height: 100%;
+  width: 30%;
+  border-radius: 9999px;
+  background: linear-gradient(
+    90deg,
+    rgb(6 182 212),
+    rgb(34 211 238),
+    rgb(6 182 212)
+  );
+  background-size: 200% 100%;
+  animation:
+    water-shimmer 1.2s ease-in-out infinite,
+    water-fill 1.8s ease-in-out infinite;
+}
+
+@keyframes water-shimmer {
+  0% {
+    background-position: 0% 50%;
+    transform: translateX(-30%);
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+    transform: translateX(200%);
+  }
+}
+
+@keyframes water-fill {
+  0% {
+    width: 18%;
+  }
+  50% {
+    width: 82%;
+  }
+  100% {
+    width: 34%;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body:not(.print-tax-rebate) {
+    background: white !important;
+    color: black !important;
+  }
+
+  #root {
+    max-width: none !important;
+  }
+
+  .print-expand {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  body.print-tax-rebate #app-main.print-hidden {
+    display: none !important;
+  }
+
+  body.print-tax-rebate #tax-rebate-print-root {
+    display: block !important;
+    position: static !important;
+    inset: auto !important;
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: white !important;
+    color: black !important;
+    overflow: visible !important;
+  }
+
+  body.print-tax-rebate #tax-rebate-print-root * {
+    color: inherit;
+  }
+}
